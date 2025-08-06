@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
+    /* Variables CSS */
     :root {
       --primary: #58a6ff;
       --secondary: #1f6feb;
@@ -27,8 +27,10 @@
       --text-light: #8b949e;
       --neon-effect: 0 0 10px currentColor;
       --transition: all 0.25s cubic-bezier(0.65, 0, 0.35, 1);
+      --border-color: #30363d;
     }
 
+    /* Reset y estilos base */
     * {
       margin: 0;
       padding: 0;
@@ -58,7 +60,7 @@
     /* Header */
     header {
       background-color: var(--bg-darker);
-      border-bottom: 1px solid #30363d;
+      border-bottom: 1px solid var(--border-color);
       position: fixed;
       width: 100%;
       top: 0;
@@ -85,6 +87,7 @@
       text-shadow: var(--neon-effect);
     }
 
+    /* Navegación */
     .nav-links {
       display: flex;
       gap: 30px;
@@ -119,7 +122,7 @@
       width: 100%;
     }
 
-    /* Hero */
+    /* Hero Section */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -176,12 +179,7 @@
       max-width: 600px;
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      margin-top: 40px;
-    }
-
+    /* Botones */
     .btn {
       padding: 12px 24px;
       border-radius: 6px;
@@ -217,10 +215,10 @@
       background-color: rgba(88, 166, 255, 0.1);
     }
 
-    /* Secciones */
+    /* Secciones generales */
     section {
       padding: 80px 0;
-      border-bottom: 1px solid #30363d;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .section-title {
@@ -263,7 +261,7 @@
       position: relative;
       border-radius: 10px;
       overflow: hidden;
-      border: 1px solid #30363d;
+      border: 1px solid var(--border-color);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
@@ -282,7 +280,7 @@
 
     .skill-category {
       background-color: var(--bg-darker);
-      border: 1px solid #30363d;
+      border: 1px solid var(--border-color);
       border-radius: 10px;
       padding: 25px;
       transition: var(--transition);
@@ -336,7 +334,7 @@
 
     .project-card {
       background-color: var(--bg-darker);
-      border: 1px solid #30363d;
+      border: 1px solid var(--border-color);
       border-radius: 10px;
       overflow: hidden;
       transition: var(--transition);
@@ -351,7 +349,7 @@
     .project-image {
       height: 200px;
       overflow: hidden;
-      border-bottom: 1px solid #30363d;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .project-image img {
@@ -467,7 +465,7 @@
 
     .contact-form {
       background-color: var(--bg-darker);
-      border: 1px solid #30363d;
+      border: 1px solid var(--border-color);
       border-radius: 10px;
       padding: 30px;
     }
@@ -488,7 +486,7 @@
       width: 100%;
       padding: 12px 15px;
       background-color: var(--bg-dark);
-      border: 1px solid #30363d;
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       color: var(--text);
       font-family: 'Space Mono', monospace;
@@ -581,20 +579,21 @@
 
     @media (max-width: 768px) {
       .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-darker);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 15px;
         display: none;
+        border-bottom: 1px solid var(--border-color);
       }
       
-      .mobile-menu-btn {
+      .nav-links.active {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: transparent;
-        border: none;
-        color: var(--text);
-        font-size: 1.5rem;
-        cursor: pointer;
       }
       
       .hero-buttons {
@@ -614,6 +613,7 @@
     }
 
     .fade-in {
+      opacity: 0;
       animation: fadeIn 0.8s ease-out forwards;
     }
 
@@ -622,7 +622,6 @@
     .delay-3 { animation-delay: 0.6s; }
   </style>
 </head>
-
 <body>
   <!-- Header -->
   <header>
@@ -634,7 +633,7 @@
         <a href="#projects" class="nav-link">Proyectos</a>
         <a href="#contact" class="nav-link">Contacto</a>
       </nav>
-      <button class="mobile-menu-btn">
+      <button class="mobile-menu-btn" aria-label="Menú">
         <i class="fas fa-bars"></i>
       </button>
     </div>
@@ -663,11 +662,11 @@
   </section>
 
   <!-- Sobre mí -->
-  <section id="about" class="fade-in">
+  <section id="about">
     <div class="container">
-      <h2 class="section-title">Sobre mí</h2>
+      <h2 class="section-title fade-in">Sobre mí</h2>
       <div class="about-content">
-        <div class="about-text">
+        <div class="about-text fade-in delay-1">
           <p>
             Desarrollador con 5+ años de experiencia creando aplicaciones web modernas y escalables. 
             Especializado en JavaScript, TypeScript y frameworks como React y Node.js.
@@ -681,20 +680,20 @@
             reutilizables y optimización de performance.
           </p>
         </div>
-        <div class="about-image">
-          <img src="https://via.placeholder.com/500x500" alt="Tu Nombre - Desarrollador">
+        <div class="about-image fade-in delay-2">
+          <img src="https://via.placeholder.com/500x500" alt="Tu Nombre - Desarrollador" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
   <!-- Habilidades -->
-  <section id="skills" class="fade-in">
+  <section id="skills">
     <div class="container">
-      <h2 class="section-title">Habilidades</h2>
+      <h2 class="section-title fade-in">Habilidades</h2>
       <div class="skills-container">
         <!-- Lenguajes -->
-        <div class="skill-category delay-1">
+        <div class="skill-category fade-in delay-1">
           <h3 class="skill-category-title"><i class="fas fa-code"></i> Lenguajes</h3>
           <div class="skill-list">
             <span class="skill">JavaScript</span>
@@ -708,7 +707,7 @@
         </div>
         
         <!-- Frontend -->
-        <div class="skill-category delay-2">
+        <div class="skill-category fade-in delay-2">
           <h3 class="skill-category-title"><i class="fas fa-laptop-code"></i> Frontend</h3>
           <div class="skill-list">
             <span class="skill">React</span>
@@ -722,7 +721,7 @@
         </div>
         
         <!-- Backend -->
-        <div class="skill-category delay-3">
+        <div class="skill-category fade-in delay-3">
           <h3 class="skill-category-title"><i class="fas fa-server"></i> Backend</h3>
           <div class="skill-list">
             <span class="skill">Node.js</span>
@@ -736,7 +735,7 @@
         </div>
         
         <!-- Herramientas -->
-        <div class="skill-category delay-1">
+        <div class="skill-category fade-in delay-1">
           <h3 class="skill-category-title"><i class="fas fa-tools"></i> Herramientas</h3>
           <div class="skill-list">
             <span class="skill">Git</span>
@@ -753,14 +752,14 @@
   </section>
 
   <!-- Proyectos -->
-  <section id="projects" class="fade-in">
+  <section id="projects">
     <div class="container">
-      <h2 class="section-title">Proyectos Destacados</h2>
+      <h2 class="section-title fade-in">Proyectos Destacados</h2>
       <div class="projects-grid">
         <!-- Proyecto 1 -->
-        <div class="project-card delay-1">
+        <div class="project-card fade-in delay-1">
           <div class="project-image">
-            <img src="https://via.placeholder.com/600x400" alt="Proyecto 1">
+            <img src="https://via.placeholder.com/600x400" alt="Proyecto 1" loading="lazy">
           </div>
           <div class="project-content">
             <h3 class="project-title">Sistema de Componentes</h3>
@@ -785,9 +784,9 @@
         </div>
         
         <!-- Proyecto 2 -->
-        <div class="project-card delay-2">
+        <div class="project-card fade-in delay-2">
           <div class="project-image">
-            <img src="https://via.placeholder.com/600x400" alt="Proyecto 2">
+            <img src="https://via.placeholder.com/600x400" alt="Proyecto 2" loading="lazy">
           </div>
           <div class="project-content">
             <h3 class="project-title">API E-commerce</h3>
@@ -813,9 +812,9 @@
         </div>
         
         <!-- Proyecto 3 -->
-        <div class="project-card delay-3">
+        <div class="project-card fade-in delay-3">
           <div class="project-image">
-            <img src="https://via.placeholder.com/600x400" alt="Proyecto 3">
+            <img src="https://via.placeholder.com/600x400" alt="Proyecto 3" loading="lazy">
           </div>
           <div class="project-content">
             <h3 class="project-title">App de Tareas</h3>
@@ -843,12 +842,12 @@
   </section>
 
   <!-- Contacto -->
-  <section id="contact" class="fade-in">
+  <section id="contact">
     <div class="container">
-      <h2 class="section-title">Contacto</h2>
+      <h2 class="section-title fade-in">Contacto</h2>
       <div class="contact-container">
         <div class="contact-info">
-          <div class="contact-item delay-1">
+          <div class="contact-item fade-in delay-1">
             <div class="contact-icon">
               <i class="fas fa-envelope"></i>
             </div>
@@ -858,28 +857,28 @@
             </div>
           </div>
           
-          <div class="contact-item delay-2">
+          <div class="contact-item fade-in delay-2">
             <div class="contact-icon">
               <i class="fab fa-github"></i>
             </div>
             <div class="contact-text">
               <h3>GitHub</h3>
-              <a href="https://github.com/tuusuario" target="_blank">github.com/tuusuario</a>
+              <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">github.com/tuusuario</a>
             </div>
           </div>
           
-          <div class="contact-item delay-3">
+          <div class="contact-item fade-in delay-3">
             <div class="contact-icon">
               <i class="fab fa-linkedin"></i>
             </div>
             <div class="contact-text">
               <h3>LinkedIn</h3>
-              <a href="https://linkedin.com/in/tuusuario" target="_blank">linkedin.com/in/tuusuario</a>
+              <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer">linkedin.com/in/tuusuario</a>
             </div>
           </div>
         </div>
         
-        <div class="contact-form delay-2">
+        <div class="contact-form fade-in delay-2">
           <form id="contactForm">
             <div class="form-group">
               <label for="name" class="form-label">Nombre</label>
@@ -909,74 +908,88 @@
   <footer class="fade-in">
     <div class="container">
       <div class="social-links">
-        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-dev"></i></a>
+        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link" aria-label="Dev.to"><i class="fab fa-dev"></i></a>
       </div>
       <p class="copyright">© <span id="currentYear"></span> Tu Nombre. Todos los derechos reservados.</p>
     </div>
   </footer>
 
   <script>
-    // Año actual
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
-    // Menú móvil
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    menuBtn.addEventListener('click', () => {
-      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-      menuBtn.innerHTML = navLinks.style.display === 'flex' ? 
-        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-    
-    // Formulario de contacto
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Mensaje enviado (simulado). ¡Gracias por contactarme!');
-        contactForm.reset();
-      });
-    }
-    
-    // Animaciones al hacer scroll
-    const observerOptions = {
-      threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-    
-    // Efecto máquina de escribir
-    const typewriter = document.querySelector('.typewriter');
-    if (typewriter) {
-      const text = typewriter.textContent;
-      typewriter.textContent = '';
+    // Función para inicializar el portafolio
+    document.addEventListener('DOMContentLoaded', function() {
+      // Actualizar año en el footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
       
-      let i = 0;
-      function typeWriter() {
-        if (i < text.length) {
-          typewriter.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, Math.random() * 100 + 50);
-        }
+      // Menú móvil
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      
+      menuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        const icon = this.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      });
+      
+      // Formulario de contacto
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Validación simple
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const message = document.getElementById('message').value;
+          
+          if (name && email && message) {
+            alert('Mensaje enviado (simulado). ¡Gracias por contactarme!');
+            contactForm.reset();
+          } else {
+            alert('Por favor completa todos los campos');
+          }
+        });
       }
       
-      setTimeout(typeWriter, 1000);
-    }
+      // Efecto máquina de escribir
+      const typewriter = document.querySelector('.typewriter');
+      if (typewriter) {
+        const text = typewriter.textContent;
+        typewriter.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+          if (i < text.length) {
+            typewriter.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, Math.random() * 100 + 50);
+          }
+        }
+        
+        setTimeout(typeWriter, 1000);
+      }
+      
+      // Observador de intersección para animaciones
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+      });
+    });
   </script>
 </body>
 </html>
